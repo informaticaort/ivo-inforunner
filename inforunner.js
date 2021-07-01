@@ -1048,7 +1048,7 @@ $('.restart').click(function() {
 $('.enviar').click(function() {
   var name=document.getElementById('myForm-Name').value;
   if(name!="")
-  enviarPuntaje(score, preguntascorrectas);
+  enviarPuntaje(score);
   else {
     alert("Completa el nombre para enviar puntaje!");
   }

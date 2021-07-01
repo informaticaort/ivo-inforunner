@@ -1,22 +1,21 @@
-
 /**
  * Envia puntaje
  */
-function enviarPuntaje(score, preguntascorrectas)
+const url = 'https://739erc48wj.execute-api.us-east-1.amazonaws.com/prod/puntajes';
+function enviarPuntaje(score)
 {
   var name=document.getElementById('myForm-Name').value;
 
-  var xhr = new XMLHttpRequest();
-          xhr.open('POST', 'http://10.128.20.20/inforunner/insertar.php?name='+name+'&score='+score+'&pc='+preguntascorrectas, true);
-          xhr.withCredentials = true;
-          xhr.onreadystatechange = function() {
-            if (xhr.readyState === 2) {
-              console.log(name + " , partida guardada con "+score + " puntos!");
-            }
-          }
-          xhr.setRequestHeader('Content-Type', 'application/text');
-          xhr.send(name);
-
+    axios.post(url, {
+      nickname: name,
+      puntos: score
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   $('#myForm').hide();
   $('.enviar').hide();
   document.getElementById('myForm-Name').value="";
