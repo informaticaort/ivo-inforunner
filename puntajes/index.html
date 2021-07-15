@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IVO INFORM&Aacute;TICA</title>
+    <link rel="stylesheet" href="css/style.css">
+     <!-- Bootstrap core CSS -->
+     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+ 
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <div id="carouselTv" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner" role="listbox">
+          <div class="carousel-item active" id="slide1" data-interval="2000">
+          	<div class="layer-1-2">
+               <h1 class="title2">¡Bienvenidos a <span class="resaltado">Inform&aacute;tica&#33;</span></h1>
+            </div>
+          </div>
+        
+        <div class="carousel-item" id="slide2" data-interval="80000">
+            <h2 class="tituloPtos">&Uacute;ltimos Puntajes</h2>
+            <div class="marquee">
+                <ul id="listaPuntos" class="inline"></ul>
+            </div>
+        </div>
+      </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="js/main.js"></script>
+     <!-- Bootstrap core JavaScript -->
+     <script src="vendor/jquery/jquery.min.js"></script>
+     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>listarPuntajes();</script>
+    <script type="text/javascript">
+        var d = new Date();
+        $('#carouselTv').on('slide.bs.carousel', function(e) {
+          
+          if(e.relatedTarget.id == 'slide1'){
+            
+              $('body').css('background-image', 'url(img/2.jpg)');
+              /*$('#carouselTv').carousel({
+                interval: 1000
+              });*/
+          } else if(e.relatedTarget.id == 'slide2'){
+              $('body').css('background-image', 'url(img/3.jpg)');
+              //document.getElementById('marqueeUltimosPtos').start();
+              /*$('#carouselTv').carousel({
+                interval: 5000
+              });*/
+          } 
+    });
+      </script>
+      <script type="text/javascript">
+        var t;
+    
+    var start = $('#carouselTv').find('.active').attr('data-interval');
+    t = setTimeout("$('#carouselTv').carousel({interval: 1000});", start-1000);
+    
+    $('#carouselTv').on('slid.bs.carousel', function () {   
+         clearTimeout(t);  
+         var duration = $(this).find('.active').attr('data-interval');
+    
+         $('#carouselTv').carousel('pause');
+         t = setTimeout("$('#carouselTv').carousel();", duration-1000);
+    });
+    
+      </script>
+</body>
+</html>
